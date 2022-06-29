@@ -1,7 +1,7 @@
 package br.com.project.librook.service;
 
-import br.com.project.librook.domain.Categoria;
-import br.com.project.librook.domain.Livro;
+import br.com.project.librook.model.Categoria;
+import br.com.project.librook.model.Livro;
 import br.com.project.librook.repository.CategoriaRepository;
 import br.com.project.librook.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;

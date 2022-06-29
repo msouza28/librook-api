@@ -1,6 +1,6 @@
 package br.com.project.librook.repository;
 
-import br.com.project.librook.domain.Livro;
+import br.com.project.librook.model.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

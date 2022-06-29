@@ -1,6 +1,5 @@
-package br.com.project.librook.domain;
+package br.com.project.librook.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
