@@ -1,5 +1,6 @@
 package br.com.project.librook.service;
 
+import br.com.project.librook.exception.ObjectNotFoundException;
 import br.com.project.librook.model.Categoria;
 import br.com.project.librook.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ public class CategoriaService {
 
     public Categoria findById(Integer id){
         Optional<Categoria> obj = categoriaRepository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+                "Objeto nao encontrado! Id:" + id + ", Tipo: " + Categoria.class.getName()));
     }
 
 }
