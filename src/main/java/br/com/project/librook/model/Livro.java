@@ -22,6 +22,7 @@ public class Livro implements Serializable {
     private String titulo;
     private String nomeAutor;
     private String texto;
+
     // um livro precisa do id da categoria
     //varios livros para uma categoria
     @JsonIgnore
