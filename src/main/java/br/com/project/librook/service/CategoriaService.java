@@ -22,7 +22,14 @@ public class CategoriaService {
     }
 
     public List<Categoria> findAll(){    //metodo utilizado no Controller para chamar uma lista de categorias
+
         return categoriaRepository.findAll();
     }
 
+    public Categoria create(Categoria obj){
+        obj.setId(null);
+        return categoriaRepository.save(obj);
+    }
 }
+
+

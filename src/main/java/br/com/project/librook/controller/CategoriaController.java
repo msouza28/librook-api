@@ -5,11 +5,10 @@ import br.com.project.librook.model.Categoria;
 import br.com.project.librook.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ public class CategoriaController { // buscando categoria por id
     private CategoriaService categoriaService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Categoria> findById(@PathVariable Integer id){
+    public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
         Categoria obj = categoriaService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
@@ -34,6 +33,13 @@ public class CategoriaController { // buscando categoria por id
         //converter lista categoria: list.stream.map(para cada obj, instanciar new CategoriaDto(obj).collect(Collectors.toList()));
         List<CategoriaDto> listDto = list.stream().map(obj -> new CategoriaDto(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @PostMapping
+    public ResponseEntity<Categoria> criarCategoria(@RequestBody Categoria obj) {
+        obj = categoriaService.create(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
 
 }
