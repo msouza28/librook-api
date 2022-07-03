@@ -18,8 +18,6 @@ public class LivroDto implements Serializable {
     public LivroDto (Livro obj) {
         this.id = obj.getId();
         this.titulo = obj.getTitulo();
-        this.nomeAutor = obj.getNomeAutor();
-        this.texto = obj.getTexto();
     }
 
     @Id
@@ -27,6 +25,5 @@ public class LivroDto implements Serializable {
     private Integer id;
 
     private String titulo;
-    private String nomeAutor;
-    private String texto;
+
 }
