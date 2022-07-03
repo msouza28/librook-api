@@ -48,6 +48,11 @@ public class CategoriaController { // buscando categoria por id
         Categoria newObj = categoriaService.update(id, objDto);
         return ResponseEntity.ok().body(new CategoriaDto(newObj));
     }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteCategoria(@PathVariable Integer id){
+        categoriaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 
