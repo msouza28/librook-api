@@ -16,4 +16,13 @@ public class ControllerExceptionHandler {
                 HttpStatus.NOT_FOUND.value(),e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
+
+    @ExceptionHandler(DataIntegrityException.class)
+    public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityException e, ServletRequest request){
+        StandardError error = new StandardError(System.currentTimeMillis(),
+                HttpStatus.BAD_REQUEST.value(),e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+
 }

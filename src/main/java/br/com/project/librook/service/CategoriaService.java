@@ -2,9 +2,11 @@ package br.com.project.librook.service;
 
 import br.com.project.librook.dto.CategoriaDto;
 import br.com.project.librook.exception.ObjectNotFoundException;
+import br.com.project.librook.exception.DataIntegrityException;
 import br.com.project.librook.model.Categoria;
 import br.com.project.librook.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,9 +46,14 @@ public class CategoriaService {
 
 
     public void delete(Integer id) {
-        findById(id);
-        categoriaRepository.deleteById(id);
 
+        findById(id);
+
+        try {
+            categoriaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataIntegrityException("Categoria nao pode ser deletada! Livros estao vinculados.");
+        }
     }
 }
 
