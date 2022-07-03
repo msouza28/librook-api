@@ -1,5 +1,6 @@
 package br.com.project.librook.service;
 
+import br.com.project.librook.dto.CategoriaDto;
 import br.com.project.librook.exception.ObjectNotFoundException;
 import br.com.project.librook.model.Categoria;
 import br.com.project.librook.repository.CategoriaRepository;
@@ -28,6 +29,16 @@ public class CategoriaService {
 
     public Categoria create(Categoria obj){
         obj.setId(null);
+        return categoriaRepository.save(obj);
+    }
+
+
+    public Categoria update(Integer id, CategoriaDto objDto) {
+        Categoria obj = findById(id);
+        obj.setNome(objDto.getNome());
+        obj.setDescricao(objDto.getDescricao());
+
+
         return categoriaRepository.save(obj);
     }
 }

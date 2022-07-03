@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.awt.image.Kernel;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +43,11 @@ public class CategoriaController { // buscando categoria por id
         return ResponseEntity.created(uri).body(obj);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategoriaDto> updateCategoria(@PathVariable Integer id,  @RequestBody CategoriaDto objDto){
+        Categoria newObj = categoriaService.update(id, objDto);
+        return ResponseEntity.ok().body(new CategoriaDto(newObj));
+    }
 }
 
 
