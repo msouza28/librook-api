@@ -1,6 +1,7 @@
 package br.com.project.librook.service;
 
 import br.com.project.librook.exception.ObjectNotFoundException;
+import br.com.project.librook.model.Categoria;
 import br.com.project.librook.model.Livro;
 import br.com.project.librook.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,12 @@ public class LivroService {
         newObj.setTitulo(obj.getTitulo());
         newObj.setNomeAutor(obj.getNomeAutor());
         newObj.setTexto(obj.getTexto());
+    }
+
+    public Livro create(Integer id_cat, Livro obj) {
+        obj.setId(null);
+        Categoria cat = categoriaService.findById(id_cat);
+        obj.setCategoria(cat);
+        return livroRepository.save(obj);
     }
 }
